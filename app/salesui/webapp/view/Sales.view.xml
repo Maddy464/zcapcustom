@@ -1,0 +1,105 @@
+<mvc:View controllerName="salesui.controller.Sales"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form">
+   <Shell id="shell">
+        <App id="app_sales">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <Table items="{mainModel>/SalesOrder}" id="table0" mode="SingleSelectLeft" selectionChange="onSelect">
+                            <headerToolbar>
+                                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                                    <content>
+                                        <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                                        <SearchField id="searchField" width="20%" placeholder="search" search=".onSearch" />
+                                        <Button id="createButton" icon="sap-icon://add" tooltip="Create" visible="true" press="onOpenAddDialog">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData" priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+                                        <Button id="deleteButton" icon="sap-icon://delete" tooltip="Delete" visible="false" press="onDelete">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1" priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+
+                                        <Button id="saveButton" text="Save" type="Emphasized" visible="false" enabled="true" press="onSave" />
+                                        <Button id="editModeButton" visible="true" icon="sap-icon://edit" tooltip="Edit" press="onEditMode">
+                                            <layoutData>
+                                                <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData2" priority="NeverOverflow" />
+                                            </layoutData>
+                                        </Button>
+
+                                    </content>
+                                    <dependents>
+                                        <Dialog id="OpenDialog" title="Create Sales Order">
+                                            <buttons>
+                                                <Button id="confirmCreate" text="Create" press=".onCreate" type="Emphasized" />
+                                                <Button id="cancelCreate" text="Cancel" press="onCancelDialog" type="Transparent" />
+                                            </buttons>
+                                            <form:SimpleForm id="_IDGenSimpleForm" editable="true" layout="ResponsiveGridLayout">
+                                                <form:content>
+                                                    <Label id="_IDGenLabel" text="SO Number" required="true" />
+                                                    <Input id="idSo" change="onNameChange" />
+                                                    <Label id="_IDGenLabel1" text="Customer Name" />
+                                                    <Input id="idCustName"  />
+                                                    <Label id="_IDGenLabel2" text="Customer Number" />
+                                                    <Input id="idCustomer"  />
+                                                    <Label id="_IDGenLabel3" text="Po Number" />
+                                                    <Input id="idPo"  />
+                                                    <Label id="_IDGenLabel4" text="Inquiry Number" />
+                                                    <Input id="idInqNumber"  />
+                                                </form:content>
+                                            </form:SimpleForm>
+                                        </Dialog>
+                                    </dependents>
+
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <items>
+                                <ColumnListItem type="Active" id="item0">
+                                    <cells>
+                                        <Text id="id1" text="{mainModel>soNumber}"/>
+                                        <Text id="id2" text="{mainModel>customerName}"/>
+                                        <Text id="id3" text="{mainModel>customerNumber}"/>
+                                        <Text id="id4" text="{mainModel>PoNumber}"/>
+                                        <Text id="id5" text="{mainModel>inquiryNumber}"/>
+                                        <Button id="id6" icon="sap-icon://edit" press="onSelect" />
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                            <columns>
+                                <Column id="_IDGenColumn">
+                                    <header>
+                                        <Label id="_IDGenLabel5" text="So Number" />
+                                    </header>
+                                </Column>
+                                <Column id="_IDGenColumn1">
+                                    <header>
+                                        <Label id="_IDGenLabel6" text="Customer Name" />
+                                    </header>
+                                </Column>
+                                <Column id="_IDGenColumn2">
+                                    <header>
+                                        <Label id="_IDGenLabel7" text="Customer Number" />
+                                    </header>
+                                </Column>
+                                <Column id="_IDGenColumn3">
+                                    <header>
+                                        <Label id="_IDGenLabel8" text="PO Number" />
+                                    </header>
+                                </Column>
+                                <Column id="_IDGenColumn4">
+                                    <header>
+                                        <Label id="_IDGenLabel9" text="Inquiry Number" />
+                                    </header>
+                                </Column>
+                            </columns>
+                        </Table>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
