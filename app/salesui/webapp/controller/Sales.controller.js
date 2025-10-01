@@ -114,7 +114,7 @@ sap.ui.define([
                 sGroup = "$auto";
                 if (that.getView().getModel(sModelName).hasPendingChanges(sGroup)) {
                     that.getView().getModel(sModelName).submitBatch(sGroup).then(oSuccess =>{
-                        that.makeChangesAndSubmit(resolve,reject, sModelName,sGroup);
+                       // that.makeChangesAndSubmit(resolve,reject, sModelName,sGroup);
                         MessageToast.show("Record updated Successfully");
                     },reject)
                     .catch(function errorHandler(err) {
@@ -124,12 +124,15 @@ sap.ui.define([
                     that.getView().getModel(sModelName).refresh(sGroup);
                     resolve();
                 }
+
+
             },
             onSave: function(){
                 this.getView().byId("editModeButton").setVisible(true);
                 this.getView().byId("saveButton").setVisible(false);
                 this._oTable.setMode(sap.m.ListMode.None);
                 this.rebindTable(this.oReadOnlyTemplate, "Navigation");
+                this.refreshModel("mainModel");
                 
             },
             _createReadOnlyTemplates: function () {
