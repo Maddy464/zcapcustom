@@ -110,6 +110,16 @@ class SaalesService extends cds.ApplicationService {
 
    async init() {
 
+
+
+    //          // Incorrect:
+    // this.on('READ', 'Products', myHandlerVariable); // if myHandlerVariable is not a function
+
+    // // Correct:
+    // this.on('READ', 'Products', async (req) => {
+    //     // ... handler logic
+    // });
+
         const { SalesOrder_ext } = this.entities;
         //this.on('READ', SalesOrder_ext, ConnectBackend);
 
