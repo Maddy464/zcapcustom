@@ -155,7 +155,86 @@ sap.ui.define([
 					})
 				]
 			});
+        },
+
+        // start of actions and functions
+
+          /* ================================================================== */
+    /* ACTION FUNCTIONS USING execute() - DEPRECATED SINCE UI5 1.123+    */
+    /* ================================================================== */
+
+    /* ------------------------------------------------------------------ */
+    /* 1.  BOUND action – NO parameters (execute)                        */
+    /* ------------------------------------------------------------------ */
+    async executePromoteBook() {
+      
+    //      var oModel = this.getOwnerComponent().getModel("mainModel");
+    //   var oActionODataContextBinding = oModel.bindContext("/submitOrder(...)");
+    //   oActionODataContextBinding.execute().then(function() {
+    //         var oActionContext = oActionODataContextBinding.getBoundContext();
+    //         console.log(oActionContext.getObject()); // Access the action's return value
+    //         sap.m.MessageToast.show("Book promoted successfully!");
+    //     }).catch(function(oError) {
+    //         sap.m.MessageToast.show("Error promoting book: " + oError.message);
+    //     });
+
+     var oSelected = this.byId("table0").getSelectedItem();
+         oSelected.getBindingContext("mainModel").getObject()
+
+      const odataModel = this.getView().getModel("mainModel");
+    //  const bookContext = this.getView().getBindingContext();
+       const bookContext =  oSelected.getBindingContext("mainModel").getObject();
+
+    //   if (!bookContext) {
+    //     MessageToast.show("No book context available")
+    //    // return
+    //   }
+
+      const actionPath = "/submitOrder(...)"
+     //   const actionPath = "BookshopService.submitOrder(...)"
+        const actionBinding = odataModel.bindContext(actionPath,bookContext)
+
+      await actionBinding.execute()
+      MessageToast.show("Book promoted (Execute)")
+
+
+
+    },
+
+    /* ------------------------------------------------------------------ */
+    /* 2.  BOUND action – WITH parameters (execute)                      */
+    /* ------------------------------------------------------------------ */
+    async executeSetDiscount() {
+      const odataModel = this.getView().getModel()
+      // const bookContext = this.getView().getBindingContext()
+
+      // if (!bookContext) {
+      //   MessageToast.show("No book context available")
+      //   return
+      // }
+
+      const actionPath = "/setDiscount(...)"
+      const discountParameters = {
+        percentage: 15,
+        reason: "HOLIDAY_SALE"
+      }
+
+      const actionBinding = odataModel.bindContext(actionPath)
+
+      // Set parameters for the action
+      Object.entries(discountParameters).forEach(
+        ([parameterName, parameterValue]) => {
+          actionBinding.setParameter(parameterName, parameterValue)
         }
+      )
+
+      await actionBinding.execute()
+      MessageToast.show("Discount applied: 15% (Execute)")
+    }
+
+
+
+
 
 
         //end of methods

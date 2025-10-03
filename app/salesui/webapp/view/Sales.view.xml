@@ -7,11 +7,15 @@
             <pages>
                 <Page id="page" title="{i18n>title}">
                     <content>
+        
                         <Table items="{mainModel>/SalesOrder}" id="table0" mode="SingleSelectLeft" selectionChange="onSelect">
                             <headerToolbar>
                                 <OverflowToolbar id="_IDGenOverflowToolbar1">
                                     <content>
                                         <ToolbarSpacer id="_IDGenToolbarSpacer" />
+                                        <Button id="executePromoteBtn" text="Execute: Promote Book" press="executePromoteBook" type="Emphasized" class="sapUiTinyMarginEnd"/>
+                                <Button id="executeDiscountBtn" text="Execute: Set Discount (15%)" press="executeSetDiscount" type="Emphasized"/>
+                
                                         <SearchField id="searchField" width="20%" placeholder="search" search=".onSearch" />
                                         <Button id="createButton" icon="sap-icon://add" tooltip="Create" visible="true" press="onOpenAddDialog">
                                             <layoutData>
