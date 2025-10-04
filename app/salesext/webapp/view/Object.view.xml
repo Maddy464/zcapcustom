@@ -79,12 +79,14 @@
 										<m:items>
 											<m:ColumnListItem id="_IDGenColumnListItem1" type="Inactive">
 												<m:cells>
-													<m:ObjectIdentifier id="_IDGenObjectIdentifier1"
+
+						                       
+													 <m:ObjectIdentifier id="_IDGenObjectIdentifier1"
 														title="{ path: 'ItemPosition', type: 'sap.ui.model.odata.type.String', constraints: { isDigitSequence: true, maxLength: 10 } }"/>
 													<m:ObjectIdentifier id="_IDGenObjectIdentifier2" title="{ProductID}" text="{ToProduct/Name}"/>
-													<m:Text id="_IDGenText15" text="{ path: 'DeliveryDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'medium' } }"/>
+													<m:Text id="_IDGenText15" text="{ path: 'DeliveryDate'}"/>
 													<m:ObjectNumber id="_IDGenObjectNumber4" number="{ path: 'Quantity', formatter: '.formatter.numberUnit' }" unit="{QuantityUnit}"/>
-													<m:ObjectNumber id="_IDGenObjectNumber5" number="{ path: 'GrossAmount', formatter: '.formatter.numberUnit' }" unit="{CurrencyCode}"/>
+													<m:ObjectNumber id="_IDGenObjectNumber5" number="{ path: 'GrossAmount', formatter: '.formatter.numberUnit' }" unit="{CurrencyCode}"/> 
 												</m:cells>
 											</m:ColumnListItem>
 										</m:items>

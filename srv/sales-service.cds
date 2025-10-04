@@ -27,6 +27,8 @@ service CatalogService @(path:'/CatalogService')
      @cds.persistence.table
     entity SalesOrderLineItem_ext as select from external.SalesOrderLineItemSet;
 
+     @cds.persistence.table
+    entity Product_ext as select from external.ProductSet;
 
     
 }
@@ -36,6 +38,17 @@ service CatalogService @(path:'/CatalogService')
 extend projection SalesService.SalesOrder_ext with {
     ToLineItems : Association to many SalesService.SalesOrderLineItem_ext
                             on ToLineItems.SalesOrderID = SalesOrderID
+
+    
+
+}
+
+extend projection SalesService.SalesOrderLineItem_ext with {
+    ToProduct : Association to one SalesService.Product_ext
+                                  on ToProduct.ProductID = ProductID
+                  
+
+    
 
 }
 

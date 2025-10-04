@@ -116,7 +116,7 @@ sap.ui.define([
 				// 	SalesOrderID: sObjectId
 				// });
 
-                  let sObjectPath = "/SalesOrder_ext('"+sObjectId+"')";
+                  let sObjectPath = "SalesOrder_ext('"+sObjectId+"')";
 
 				this._bindView("/" + sObjectPath);
 
@@ -136,21 +136,24 @@ sap.ui.define([
 			this.getView().bindElement({
 				path: sObjectPath,
 				parameters: {
-					expand: "ToLineItems"
+					expand: "ToLineItems,ToProduct/Name"
 				},
 				events: {
 					change: this._onBindingChange.bind(this),
-					dataRequested: function () {
-						oDataModel.metadataLoaded().then(function () {
+					dataRequested: function (oResreq) {
+						//oDataModel.metadataLoaded().then(function () {
 							// Busy indicator on view should only be set if metadata is loaded,
 							// otherwise there may be two busy indications next to each other on the
 							// screen. This happens because route matched handler already calls '_bindView'
 							// while metadata is loaded.
 							//oViewModel.setProperty("/busy", true);
-						});
+						//});
+
+						let test = "test";
 					},
-					dataReceived: function () {
-						oViewModel.setProperty("/busy", false);
+					dataReceived: function (oResrec) {
+						let test = "test";
+						//oViewModel.setProperty("/busy", false);
 					}
 				}
 			});
@@ -167,10 +170,10 @@ sap.ui.define([
 				return;
 			}
 
-			var oResourceBundle = this.getResourceBundle(),
-				oObject = oView.getBindingContext().getObject(),
-				sObjectId = oObject.SalesOrderID,
-				sObjectName = oObject.SalesOrderID;
+			// var oResourceBundle = this.getResourceBundle(),
+			// 	oObject = oView.getBindingContext().getObject(),
+			// 	sObjectId = oObject.SalesOrderID,
+			// 	sObjectName = oObject.SalesOrderID;
 
 			oViewModel.setProperty("/busy", false);
 			// Add the object page to the flp routing history
