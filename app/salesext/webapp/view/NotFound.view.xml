@@ -1,0 +1,17 @@
+<mvc:View
+	controllerName="salesext.controller.NotFound"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+
+	<MessagePage
+		title="{i18n>notFoundTitle}"
+		text="{i18n>notFoundText}"
+		icon="sap-icon://document"
+		id="page12"
+		description="">
+		<customDescription>
+			<Link id="link121" text="{i18n>backToWorklist}" press="onLinkPressed" />
+		</customDescription>
+	</MessagePage>
+
+</mvc:View>

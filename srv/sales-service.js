@@ -120,10 +120,10 @@ class SaalesService extends cds.ApplicationService {
     //     // ... handler logic
     // });
 
-        const { SalesOrder_ext } = this.entities;
+        const { SalesOrder_ext, SalesOrderLineitm_ext } = this.entities;
         //this.on('READ', SalesOrder_ext, ConnectBackend);
 
-         this.on('READ', 'SalesOrder_ext', async (req) => {
+         this.on('READ', ['SalesOrder_ext','SalesOrderLineItem_ext'], async (req) => {
 
              const externalService = await cds.connect.to('GWSAMPLE');
               const tx = externalService.tx(req.query); // Create a transaction
