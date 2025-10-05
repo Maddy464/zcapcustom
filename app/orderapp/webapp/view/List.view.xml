@@ -1,0 +1,59 @@
+ <mvc:View controllerName="orderapp.controller.List"
+  displayBlock="true"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+  
+  <Table id="table" 
+    items="{
+      path: '/Orders',
+      parameters: {
+        $orderby: 'orderId'
+      }}" mode="MultiSelect" selectionChange="onSelectionChange" busy="{viewModel>/busy}">
+    <headerToolbar>
+      <OverflowToolbar id="_IDGenOverflowToolbar1">
+        <content>
+          <Title id="_IDGenTitle" text="Orders" />
+          <ToolbarSpacer id="_IDGenToolbarSpacer"/>
+          <Button id="_IDGenButton" icon="sap-icon://add" press="onAdd" /> 
+          <Button id="_IDGenButton1" text="Delete" press="onDelete" enabled="{viewModel>/deleteEnabled}" />     
+        </content>
+      </OverflowToolbar>
+    </headerToolbar>
+    <columns>
+      <Column id="_IDGenColumn">
+        <Text id="_IDGenText" text="Order ID"/>
+      </Column>
+      <Column id="_IDGenColumn1">
+        <Text id="_IDGenText1" text="Order Date"/>
+      </Column>   
+      <Column id="_IDGenColumn2">
+        <Text id="_IDGenText2" text="Order Time"/>
+      </Column>           
+      <Column id="_IDGenColumn3">
+        <Text id="_IDGenText3" text="Comment"/>
+      </Column>        
+      <Column id="_IDGenColumn4">
+        <Text id="_IDGenText4" text="Created At"/>
+      </Column>     
+      <Column id="_IDGenColumn5">
+        <Text id="_IDGenText5" text="Status"/>
+      </Column>    
+      <Column id="_IDGenColumn6">
+        <Text id="_IDGenText6" text="Editing Status"/>
+      </Column>              
+    </columns>
+    <items>
+			<ColumnListItem id="_IDGenColumnListItem" type="Navigation" press="onDetailPress">
+				<Text id="_IDGenText7" text="{orderId}"/>
+        <Text id="_IDGenText8" text="{date}"/>
+        <Text id="_IDGenText9" text="{time}"/>
+        <Text id="_IDGenText10" text="{comment}"/>
+        <Text id="_IDGenText11" text="{createdAt}"/>
+        <Text id="_IDGenText12" text="{to_status/name}"/>
+        <Text id="_IDGenText13" text="{ 
+            path: 'HasDraftEntity',
+            formatter: '.editingStatus'}"/>
+			</ColumnListItem>    
+    </items>  
+  </Table>
+</mvc:View>

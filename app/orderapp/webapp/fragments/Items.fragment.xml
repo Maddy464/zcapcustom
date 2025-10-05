@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+    xmlns="sap.m"   
+    xmlns:core="sap.ui.core">
+
+  <Table id="itemTable" 
+        items="{
+        path: 'to_items',
+        parameters: {
+            $orderby: 'itemNumber'
+        }}" mode="{= ${viewModel>/editable} ? 'Delete' : 'None'}" delete="onDeleteItem">
+    <headerToolbar>
+      <OverflowToolbar id="_IDGenOverflowToolbar3">
+        <content>
+          <ToolbarSpacer id="_IDGenToolbarSpacer2"/>
+          <Button id="_IDGenButton6" icon="sap-icon://add" visible = "{viewModel>/editable}" press="onAddItem" /> 
+        </content>
+      </OverflowToolbar>
+    </headerToolbar>
+    <columns>
+      <Column id="_IDGenColumn7">
+        <Text id="_IDGenText16" text="No."/>
+      </Column>
+      <Column id="_IDGenColumn8">
+        <Text id="_IDGenText17" text="Product"/>
+      </Column>   
+      <Column id="_IDGenColumn9">
+        <Text id="_IDGenText18" text="Quantity"/>
+      </Column>           
+      <Column id="_IDGenColumn10">
+        <Text id="_IDGenText19" text="Price"/>
+      </Column>        
+      <Column id="_IDGenColumn11">
+        <Text id="_IDGenText20" text="Amount"/>
+      </Column>               
+    </columns>
+    <items>
+        <ColumnListItem id="itemColumnListItem" validateFieldGroup="onValidate">
+            <Text id="_IDGenText21" text="{itemNumber}"/>
+            <Input id="_IDGenInput" value="{product}" editable="{viewModel>/editable}"/>
+            <Input id="_IDGenInput1" value="{quantity}" editable="{viewModel>/editable}" fieldGroupIds="amount" />
+            <Input id="_IDGenInput2" value="{price}" editable="{viewModel>/editable}" fieldGroupIds="amount"/>
+            <Text id="_IDGenText22" text="{amount}" />
+        </ColumnListItem>    
+    </items>     
+  </Table>
+</core:FragmentDefinition>

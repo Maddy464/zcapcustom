@@ -38,9 +38,23 @@ modules:
       - salesext.zip
       name: salesext
       target-path: resources/
+    - artifacts:
+      - orderapp.zip
+      name: orderapp
+      target-path: resources/
 - name: salesext
   type: html5
   path: app/salesext
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: orderapp
+  type: html5
+  path: app/orderapp
   build-parameters:
     build-result: dist
     builder: custom

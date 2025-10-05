@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"    
+    xmlns:core="sap.ui.core">
+	<VBox id="_IDGenVBox2" class="sapUiSmallMargin">
+		<f:SimpleForm id="orderForm"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label id="_IDGenLabel" text="Delivery Date" labelFor="deliveryDate" required="true" fieldGroupIds="mandatory"/>
+				<DatePicker id="deliveryDate" value="{date}" editable="{viewModel>/editable}" change="onChange" />
+				<Label id="_IDGenLabel1" text="Delivery Time" labelFor="deliveryTime" required="true" fieldGroupIds="mandatory"/>
+				<TimePicker id="deliveryTime" value="{time}" editable="{viewModel>/editable}" change="onChange" />
+				<Label id="_IDGenLabel2" text="Comment" />
+				<TextArea id="comment" value="{comment}" editable="{viewModel>/editable}" required="true"/>
+				<Label id="_IDGenLabel3" text="Total Amount" />
+				<Text id="totalAmount" text="{totalAmount}" /> 				
+				<Label id="_IDGenLabel4" text="Created At" />
+				<Text id="createdAt" text="{createdAt}" /> 
+				<Label id="_IDGenLabel5" text="Changed At" />
+				<Text id="modifiedAt" text="{modifiedAt}" />						               
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>
