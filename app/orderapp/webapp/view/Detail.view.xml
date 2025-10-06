@@ -54,7 +54,18 @@
         </subSections>
       </ObjectPageSection>
 
-       <ObjectPageSection titleUppercase="false" id="commentOPS" title="Comment">
+
+            <ObjectPageSection id="_IDGenObjectPageSection1" title="Comments">
+        <subSections>
+          <ObjectPageSubSection id="_IDGenObjectPageSubSection3">
+            <blocks>
+              <core:Fragment fragmentName="orderapp.fragments.Comments"/>
+            </blocks>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+
+       <!-- <ObjectPageSection titleUppercase="false" id="commentOPS" title="Comment">
 
            <subSections>
 					<ObjectPageSubSection id="commentSS1" titleUppercase="false">
@@ -65,11 +76,7 @@
 					</ObjectPageSubSection>
 					<ObjectPageSubSection id="commentSS2" titleUppercase="false">
 
-
-          
-
-
-						 <!-- <m:List id = "commentBlock"
+						  <m:List id = "commentBlock"
 							headerText="Comments"
 							items="{
 							path: '/OrderComments',
@@ -87,15 +94,10 @@
 								actions="{path: 'commentActionSet>/ActionItems', templateShareable: false}">
 								<m:FeedListItemAction id="_IDGenFeedListItemAction1" text="{commentActionSet>Text}" icon="{commentActionSet>Icon}" key="{commentActionSet>Key}" press="onCommentActionPressed" />
 							</m:FeedListItem>
-						</m:List>  -->
-
-
+						</m:List>  
 					</ObjectPageSubSection>
 				</subSections>
-
-
-
-       </ObjectPageSection>
+       </ObjectPageSection> -->
       
 
 

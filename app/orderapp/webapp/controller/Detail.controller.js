@@ -379,7 +379,7 @@ sap.ui.define([
 					};
 	
 					var settings = {
-						url: "/odata/v4/OrderService/Files",
+						url: "/odata/v4/order/Files",
 						method: "POST",
 						headers: {
 							"Content-type": "application/json"
@@ -399,7 +399,7 @@ sap.ui.define([
 			},
 
 			_uploadContent: function (item, id) {
-				var url = `/odata/v4/OrderService/Files(${id})/content`
+				var url = `/odata/v4/order/Files(${id})/content`
 				item.setUploadUrl(url);	
 				var oUploadSet = this.byId("uploadSet");
 				oUploadSet.setHttpRequestMethod("PUT")

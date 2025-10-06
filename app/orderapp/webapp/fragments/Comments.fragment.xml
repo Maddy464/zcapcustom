@@ -1,0 +1,21 @@
+
+
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:feed="sap.m.FeedInput">
+  <m:VBox id="_IDGenVBox3" class="sapUiTinyMarginTop">
+    <m:Title id="_IDGenTitle2" text="Comments" level="H2" class="sapUiTinyMarginBottom"/>
+    <m:Panel id="_IDGenPanel" expandable="true" expanded="true" headerText="Add a Comment">
+      <m:FeedInput id="_IDGenFeedInput1" post="onCommentPost" class="sapUiSmallMarginBottom"/>
+    </m:Panel>
+    <m:List id="commentsList" items="{comments}" noDataText="No comments yet." class="sapUiSmallMarginTop">
+      <m:CustomListItem id="_IDGenCustomListItem">
+        <m:VBox id="_IDGenVBox4" class="sapUiSmallMargin">
+          <m:HBox id="_IDGenHBox" class="sapUiTinyMarginBottom">
+            <m:Text id="_IDGenText23" text="{user}" class="sapUiTinyMarginEnd sapMObjectMarker"/>
+            <m:Text id="_IDGenText24" text="{path: 'createdAt', formatter: '.formatter.formatDate'}" class="sapMObjectMarker"/>
+          </m:HBox>
+          <m:Text id="_IDGenText25" text="{text}"/>
+        </m:VBox>
+      </m:CustomListItem>
+    </m:List>
+  </m:VBox>
+</core:FragmentDefinition>
