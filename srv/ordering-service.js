@@ -11,19 +11,20 @@ const checkDeliveryDate = function (req) {
 const setTotalAmount = async function (req, to_parent_ID, itemAmount) {
     //calculate total amount
     //1. get all items belonging to the same parent order
-    const q1 =  SELECT.one.from `OrderingService_OrderItems_drafts`
+    const q1 =  SELECT.one.from `OrderService_OrderItems_drafts`
     .columns `{sum(amount) as restAmount}`
     .where `to_parent_ID = ${to_parent_ID} and ID <> ${req.data.ID}`
     const {restAmount} = await cds.tx(req).run(q1)
     const totalAmount = itemAmount + restAmount
 
     //2. set total amount to header
-    const q2 = UPDATE `OrderingService_Orders_drafts` .set `totalAmount = ${totalAmount}`
+    const q2 = UPDATE `OrderService_Orders_drafts` .set `totalAmount = ${totalAmount}`
                 .where `ID = ${to_parent_ID}`
     return cds.tx(req).run(q2)
 }
 
 module.exports = function () {
+
     const { Orders, OrderItems } = cds.entities
 
 
@@ -50,8 +51,13 @@ module.exports = function () {
         // if (req.data.to_items) {
         //     req.data.to_items.forEach((item, index) => {
         //         item.itemNumber = index + 1
+        //         item.amount = item.price * item.quantity;
         //     })
         // }
+
+       // await setTotalAmount(req, to_parent_ID, req.data.amount) 
+
+
     })
 
     this.before('UPDATE', 'Orders', (req) => {
@@ -59,17 +65,18 @@ module.exports = function () {
     })    
 
     //Event handlers for OrderItems
+    //this.before('PATCH', 'OrderItems', async (req) => {
     this.before('PATCH', 'OrderItems', async (req) => {
         console.log(`PATCH handler was called: ${JSON.stringify(req.data)}`)    
         
         //get draft data from table
-        const q1 = SELECT.one.from `OrderingService_OrderItems_drafts`
+        const q1 = SELECT.one.from `OrderService_OrderItems_drafts`
         .columns `{itemNumber, to_parent_ID, quantity as originalQuantity, price as originalPrice}`.where `ID = ${req.data.ID}`
         const {itemNumber, to_parent_ID, originalQuantity, originalPrice} = await cds.tx(req).run(q1)  
         
         //set Item number (if initial)
         if(!itemNumber) {
-            const q2 = SELECT.one.from `OrderingService_OrderItems_drafts`
+            const q2 = SELECT.one.from `OrderService_OrderItems_drafts`
             .columns `{max(itemNumber) as maxItemNum}`
             //.where `to_parent_ID = ${SELECT.one.from `OrderingService_OrderItems_drafts`.columns `{to_parent_ID}`.where `ID = ${req.data.ID}`}`
             .where `to_parent_ID = ${to_parent_ID}`
@@ -91,11 +98,29 @@ module.exports = function () {
 
     this.on('CANCEL', 'OrderItems', async (req, next) => {
         //get parent id from table
-        const q1 = SELECT.one.from `OrderingService_OrderItems_drafts`
+        const q1 = SELECT.one.from `OrderService_OrderItems_drafts`
         .columns `{to_parent_ID}`.where `ID = ${req.data.ID}`
         const {to_parent_ID} = await cds.tx(req).run(q1)      
         await next() 
         await setTotalAmount(req, to_parent_ID, 0) //exclude deleted item amount   
-    })    
+    })   
+    
+    // attachments methods
+
+    this.before('CREATE', 'Files', req => {
+        console.log('Create called')
+        console.log(JSON.stringify(req.data))
+        req.data.url = `/odata/v4/attachments/Files(${req.data.ID})/content`
+    })
+
+    this.before('READ', 'Files', req => {
+        //check content-type
+        console.log('content-type: ', req.headers['content-type'])
+    })
+
+
+    //end of attachments methods
+
+
 }
 

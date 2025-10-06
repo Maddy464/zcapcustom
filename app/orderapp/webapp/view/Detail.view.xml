@@ -3,7 +3,10 @@
   xmlns="sap.uxap"
   xmlns:m="sap.m"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:core="sap.ui.core">
+  xmlns:core="sap.ui.core"
+    xmlns:semantic="sap.f.semantic"
+    xmlns:f="sap.f"
+    xmlns:feed="sap.m.feed">
 
   <ObjectPageLayout id="ObjectPageLayout" showFooter="{viewModel>/editable}" upperCaseAnchorBar="false" busy="{viewModel>/busy}">
     <headerTitle>
@@ -40,6 +43,63 @@
           </ObjectPageSubSection>
         </subSections>
       </ObjectPageSection>
+
+      <ObjectPageSection id="uploadDocs" titleUppercase="false" title="Order Items">
+        <subSections>
+          <ObjectPageSubSection id="_IDGenObjectPageSubSection2">
+            <blocks>
+              <core:Fragment fragmentName="orderapp.fragments.Upldocs" type="XML" />
+            </blocks>
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+
+       <ObjectPageSection titleUppercase="false" id="commentOPS" title="Comment">
+
+           <subSections>
+					<ObjectPageSubSection id="commentSS1" titleUppercase="false">
+						<m:FeedInput id="_IDGenFeedInput"
+							post="onPostComment"
+							icon="./misc/InteliraIcon.png"
+							class="sapUiSmallMarginTopBottom" />
+					</ObjectPageSubSection>
+					<ObjectPageSubSection id="commentSS2" titleUppercase="false">
+
+
+          
+
+
+						 <!-- <m:List id = "commentBlock"
+							headerText="Comments"
+							items="{
+							path: '/OrderComments',
+							sorter: {
+								path: 'CreatedAt',
+								descending: true
+							},
+							templateShareable: false
+						}"
+						>
+							<m:FeedListItem id="_IDGenFeedListItem"
+								sender="{CreatedByName}"
+								timestamp="{path:'CreatedAt', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium'}}"
+								text="{Note}"
+								actions="{path: 'commentActionSet>/ActionItems', templateShareable: false}">
+								<m:FeedListItemAction id="_IDGenFeedListItemAction1" text="{commentActionSet>Text}" icon="{commentActionSet>Icon}" key="{commentActionSet>Key}" press="onCommentActionPressed" />
+							</m:FeedListItem>
+						</m:List>  -->
+
+
+					</ObjectPageSubSection>
+				</subSections>
+
+
+
+       </ObjectPageSection>
+      
+
+
+
     </sections>
 		<footer>
 			<m:OverflowToolbar id="_IDGenOverflowToolbar">

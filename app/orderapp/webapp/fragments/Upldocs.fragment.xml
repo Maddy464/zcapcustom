@@ -1,0 +1,65 @@
+<core:FragmentDefinition
+      
+    xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:upload="sap.m.upload">
+
+	<upload:UploadSet
+					id="uploadSet"
+					instantUpload="false"
+					uploadEnabled="true"
+					showIcons="true"
+					afterItemAdded="onAfterItemAdded"
+					uploadCompleted="onUploadCompleted"
+					items="{
+								path: '/Files',
+								parameters: {
+									$orderby: 'createdAt desc'
+								},
+								templateShareable: false}"
+				>
+					<upload:toolbar>
+					</upload:toolbar>
+					<upload:items>
+						<upload:UploadSetItem id="_IDGenUploadSetItem"
+							fileName="{fileName}"
+							mediaType="{mediaType}"
+							url="{url}"
+							thumbnailUrl="{
+								path: 'mediaType',
+								formatter: '.formatThumbnailUrl'
+							}"
+							enabledEdit="false"
+							openPressed="onOpenPressed"
+							removePressed="onRemovePressed"
+						>
+							<upload:attributes>
+								<ObjectAttribute id="_IDGenObjectAttribute1"
+									title="Uploaded By"
+									text="{createdBy}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute2"
+									title="Uploaded on"
+									text="{createdAt}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute3"
+									title="File Type"
+									text="{mediaType}"
+									active="false"
+								/>
+								<ObjectAttribute id="_IDGenObjectAttribute4"
+									title="File Size"
+									text="{size}"
+									active="false"
+								/>
+							</upload:attributes>
+						</upload:UploadSetItem>
+					</upload:items>
+				</upload:UploadSet>
+
+    			
+
+  
+</core:FragmentDefinition>

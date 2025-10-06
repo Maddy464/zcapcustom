@@ -47,6 +47,10 @@ service OrderService {
     entity OrderItems as projection on db.OrderItems;    
     @readonly
     entity Statuses as projection on db.Statuses;
+
+    entity Files as projection on db.Files;
+
+    entity Comments as projection on db.Comments;
 }
 
 
